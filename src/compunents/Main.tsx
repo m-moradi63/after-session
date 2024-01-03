@@ -1,27 +1,29 @@
-import { Profile } from "./profile";
-import { Activity } from "./activity";
+import { Profile } from "../pages/Profile.tsx";
 
-import { Overview } from "../subcomponent/Overview.tsx";
-import { Reposit } from "../subcomponent/Repositories.tsx";
-import { repoTab } from "./repoTab.tsx";
+import { RepoTab } from "../pages/RepoTab.tsx";
+
+import { RepositoryPage } from "../pages/Repository.tsx";
+
 import { Route, Routes, useParams } from "react-router-dom";
-import { Nav } from "../subcomponent/nav-top.tsx";
-import { Menu } from "../subcomponent/Menu.tsx";
+
 import { usertype } from "../App.tsx";
+
 
 
 /* const params = useParams() */
 export function Main(props:usertype) {
-
+  
 
     return (
         <div className="max-w-[1024px] m-auto  mt-8 ">
-      
-          <Nav/>
-          <Menu/>
-          <Profile username={props.username}/>
-            
-
+          <Routes>
+          <Route index path="/" element={ <Profile username={props.username}/>}/>
+            <Route path="/Overview" element={ <Profile username={props.username}/>}/>
+            <Route path="/repoTab" element={ <RepoTab username={props.username}/>}/>
+            <Route path="/Repository" element={ <RepositoryPage username={props.username}/>}/>
+          </Routes>
+          
+    
         </div>
     )
 }
